@@ -27,37 +27,37 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEstruct(MyGrammarParser.EstructContext ctx) { }
+	@Override public void enterEstructura(MyGrammarParser.EstructuraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEstruct(MyGrammarParser.EstructContext ctx) { }
+	@Override public void exitEstructura(MyGrammarParser.EstructuraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction(MyGrammarParser.FunctionContext ctx) { }
+	@Override public void enterFuncion(MyGrammarParser.FuncionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction(MyGrammarParser.FunctionContext ctx) { }
+	@Override public void exitFuncion(MyGrammarParser.FuncionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn(MyGrammarParser.ReturnContext ctx) { }
+	@Override public void enterRetornar(MyGrammarParser.RetornarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn(MyGrammarParser.ReturnContext ctx) { }
+	@Override public void exitRetornar(MyGrammarParser.RetornarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -111,13 +111,13 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRead(MyGrammarParser.ReadContext ctx) { }
+	@Override public void enterLeer(MyGrammarParser.LeerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRead(MyGrammarParser.ReadContext ctx) { }
+	@Override public void exitLeer(MyGrammarParser.LeerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -135,25 +135,25 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint(MyGrammarParser.PrintContext ctx) { }
+	@Override public void enterImprimir(MyGrammarParser.ImprimirContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint(MyGrammarParser.PrintContext ctx) { }
+	@Override public void exitImprimir(MyGrammarParser.ImprimirContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint_(MyGrammarParser.Print_Context ctx) { }
+	@Override public void enterImprimir_(MyGrammarParser.Imprimir_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint_(MyGrammarParser.Print_Context ctx) { }
+	@Override public void exitImprimir_(MyGrammarParser.Imprimir_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -171,13 +171,13 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCall_function(MyGrammarParser.Call_functionContext ctx) { }
+	@Override public void enterCall_funcion(MyGrammarParser.Call_funcionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCall_function(MyGrammarParser.Call_functionContext ctx) { }
+	@Override public void exitCall_funcion(MyGrammarParser.Call_funcionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -219,18 +219,6 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterId_pos_estruct(MyGrammarParser.Id_pos_estructContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitId_pos_estruct(MyGrammarParser.Id_pos_estructContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterValor(MyGrammarParser.ValorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -243,25 +231,25 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIf(MyGrammarParser.IfContext ctx) { }
+	@Override public void enterSi(MyGrammarParser.SiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIf(MyGrammarParser.IfContext ctx) { }
+	@Override public void exitSi(MyGrammarParser.SiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElse(MyGrammarParser.ElseContext ctx) { }
+	@Override public void enterSi_no(MyGrammarParser.Si_noContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitElse(MyGrammarParser.ElseContext ctx) { }
+	@Override public void exitSi_no(MyGrammarParser.Si_noContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -291,49 +279,49 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWhile(MyGrammarParser.WhileContext ctx) { }
+	@Override public void enterMientras(MyGrammarParser.MientrasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWhile(MyGrammarParser.WhileContext ctx) { }
+	@Override public void exitMientras(MyGrammarParser.MientrasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDo_while(MyGrammarParser.Do_whileContext ctx) { }
+	@Override public void enterHacer_mientras(MyGrammarParser.Hacer_mientrasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDo_while(MyGrammarParser.Do_whileContext ctx) { }
+	@Override public void exitHacer_mientras(MyGrammarParser.Hacer_mientrasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFor(MyGrammarParser.ForContext ctx) { }
+	@Override public void enterPara(MyGrammarParser.ParaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFor(MyGrammarParser.ForContext ctx) { }
+	@Override public void exitPara(MyGrammarParser.ParaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSwitch(MyGrammarParser.SwitchContext ctx) { }
+	@Override public void enterSeleccionar(MyGrammarParser.SeleccionarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSwitch(MyGrammarParser.SwitchContext ctx) { }
+	@Override public void exitSeleccionar(MyGrammarParser.SeleccionarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
