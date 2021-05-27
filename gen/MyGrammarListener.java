@@ -1,4 +1,4 @@
-// Generated from C:/Users/carju/Desktop/LenguajesProgramacion/AntlrFolder/traductor/grammar\MyGrammar.g4 by ANTLR 4.9.1
+// Generated from C:/Users/chasj/Desktop/JuanPablo/Traductor_Antlr/grammar\MyGrammar.g4 by ANTLR 4.9.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -26,6 +26,16 @@ public interface MyGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEstructura(MyGrammarParser.EstructuraContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGrammarParser#declaractionEstruct}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaractionEstruct(MyGrammarParser.DeclaractionEstructContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGrammarParser#declaractionEstruct}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaractionEstruct(MyGrammarParser.DeclaractionEstructContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyGrammarParser#funcion}.
 	 * @param ctx the parse tree
@@ -276,6 +286,26 @@ public interface MyGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCasos(MyGrammarParser.CasosContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGrammarParser#casos_}.
+	 * @param ctx the parse tree
+	 */
+	void enterCasos_(MyGrammarParser.Casos_Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGrammarParser#casos_}.
+	 * @param ctx the parse tree
+	 */
+	void exitCasos_(MyGrammarParser.Casos_Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGrammarParser#defecto}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefecto(MyGrammarParser.DefectoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGrammarParser#defecto}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefecto(MyGrammarParser.DefectoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyGrammarParser#romper}.
 	 * @param ctx the parse tree

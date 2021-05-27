@@ -2,7 +2,9 @@ grammar MyGrammar;
 
 inicio      : (funcion | estructura)* main (funcion | estructura)*;
 
-estructura     : 'estructura' ID (declaration)* 'fin_estructura';
+estructura     : 'estructura' ID (declaractionEstruct)+ 'fin_estructura';
+
+declaractionEstruct : type ID (',' ID)* SMCOLON;
 
 funcion        : 'funcion' type ID PIZQ parameters PDER 'hacer' comands retornar 'fin_funcion';
 
@@ -33,7 +35,7 @@ comand          : leer
 leer            : 'leer' PIZQ idr PDER SMCOLON;
 idr             : ID ('.'ID)*;
 
-imprimir           : 'imprimir' PIZQ imprimir_ PDER SMCOLON;
+imprimir           : 'imprimir' PIZQ imprimir_  PDER SMCOLON;
 imprimir_          : valor (',' valor)*;
 
 
@@ -75,18 +77,20 @@ par_fun         : valor (',' valor)*
                 |
                 ;
 
-mientras           : 'mientras' PIZQ valor PDER 'hacer' comands 'fin_mientras';
+mientras        : 'mientras' PIZQ valor PDER 'hacer' comands 'fin_mientras';
 
-hacer_mientras        : 'hacer' comands 'mientras' PIZQ valor PDER SMCOLON;
+hacer_mientras  : 'hacer' comands 'mientras' PIZQ valor PDER SMCOLON;
 
-para             : 'para' PIZQ declaration valor SMCOLON valor PDER 'hacer' comands 'fin_para';
+para            : 'para' PIZQ declaration valor SMCOLON valor PDER 'hacer' comands 'fin_para';
 
-seleccionar          : 'seleccionar' PIZQ id PDER 'entre' casos 'fin_seleccionar';
+seleccionar     : 'seleccionar' PIZQ valor PDER 'entre' casos 'fin_seleccionar';
 
-casos           : 'caso' valor ':' comands (romper)? casos
-                | 'defecto' ':' comands (romper)?
-                |
-                ;
+casos           : (casos_)+ defecto?
+                | defecto;
+
+casos_          : 'caso' valor ':' comands (romper)?;
+
+defecto         : 'defecto' ':' comands (romper)?;
 
 romper          : 'romper' SMCOLON;
 

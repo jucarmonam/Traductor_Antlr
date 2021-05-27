@@ -1,4 +1,4 @@
-// Generated from C:/Users/carju/Desktop/LenguajesProgramacion/AntlrFolder/traductor/grammar\MyGrammar.g4 by ANTLR 4.9.1
+// Generated from C:/Users/chasj/Desktop/JuanPablo/Traductor_Antlr/grammar\MyGrammar.g4 by ANTLR 4.9.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -34,6 +34,18 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEstructura(MyGrammarParser.EstructuraContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaractionEstruct(MyGrammarParser.DeclaractionEstructContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaractionEstruct(MyGrammarParser.DeclaractionEstructContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -334,6 +346,30 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCasos(MyGrammarParser.CasosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCasos_(MyGrammarParser.Casos_Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCasos_(MyGrammarParser.Casos_Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDefecto(MyGrammarParser.DefectoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefecto(MyGrammarParser.DefectoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
