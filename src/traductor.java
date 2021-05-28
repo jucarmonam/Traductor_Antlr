@@ -7,6 +7,8 @@ public class traductor extends MyGrammarBaseListener{
     private int tabs = 0;
     private HashMap<String, String> primi = new HashMap<>();
     private HashMap<String, String> booleanos = new HashMap<>();
+    private boolean entraPara = false;
+    private boolean asigPara = false;
 
     public void cambiarTab(boolean aumenta){
        tabs = aumenta ? tabs+1 : tabs-1;
@@ -146,16 +148,15 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void enterComand(MyGrammarParser.ComandContext ctx) {
-        super.enterComand(ctx);
     }
 
     @Override
     public void exitComand(MyGrammarParser.ComandContext ctx) {
-        super.exitComand(ctx);
     }
 
     @Override
     public void enterLeer(MyGrammarParser.LeerContext ctx) {
+        imprimirTab();
         System.out.println("cin>>"+ctx.idr().getText()+";");
     }
 
@@ -166,7 +167,8 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void enterImprimir(MyGrammarParser.ImprimirContext ctx) {
-        System.out.print("cout<<");
+        imprimirTab();
+        System.out.print("cout");
     }
 
     @Override
@@ -176,7 +178,9 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void enterImprimir_(MyGrammarParser.Imprimir_Context ctx) {
-        super.enterImprimir_(ctx);
+       for(int i = 0; i < ctx.valor().size(); i++){
+           System.out.print("<<" + ctx.valor(i).getText());
+       }
     }
 
     @Override
@@ -186,57 +190,66 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void enterDeclaration(MyGrammarParser.DeclarationContext ctx) {
-        imprimirTab();
-        if(ctx.primitive() != null){
-            for(int i = 0; i < ctx.ID().size(); i++){
-                if(i == 0){
-                    String primitivo = primi.get(ctx.primitive().getText());
-                    String id = ctx.ID(i).getText();
-                    if(ctx.asignacion(i).valor() != null){
-                        String v = ctx.asignacion(i).valor().getText();
-                        if(booleanos.containsKey(v)){
-                            v = booleanos.get(v);
+        if(!entraPara){
+            imprimirTab();
+            if(ctx.primitive() != null){
+                for(int i = 0; i < ctx.ID().size(); i++){
+                    if(i == 0){
+                        String primitivo = primi.get(ctx.primitive().getText());
+                        String id = ctx.ID(i).getText();
+                        if(ctx.asignacion(i).valor() != null){
+                            String v = ctx.asignacion(i).valor().getText();
+                            if(booleanos.containsKey(v)){
+                                v = booleanos.get(v);
+                            }
+                            System.out.print(primitivo + " " + id + " = " + v);
+                        }else{
+                            System.out.print(primitivo + " " + id);
                         }
-                        System.out.print(primitivo + " " + id + " = " + v);
                     }else{
-                        System.out.print(primitivo + " " + id);
-                    }
-                }else{
-                    String ide = ctx.ID(i).getText();
-                    if(ctx.asignacion(i).valor() != null){
-                        String valor = ctx.asignacion(i).valor().getText();
-                        if(booleanos.containsKey(valor)){
-                            valor = booleanos.get(valor);
+                        String ide = ctx.ID(i).getText();
+                        if(ctx.asignacion(i).valor() != null){
+                            String valor = ctx.asignacion(i).valor().getText();
+                            if(booleanos.containsKey(valor)){
+                                valor = booleanos.get(valor);
+                            }
+                            System.out.print(", " + ide  + " = " + valor);
+                        }else{
+                            System.out.print(", " + ide );
                         }
-                        System.out.print(", " + ide  + " = " + valor);
-                    }else{
-                        System.out.print(", " + ide );
                     }
                 }
+            }else{
+                String id = ctx.ID(0).getText();
+                System.out.print(id);
             }
-        }else{
-            String id = ctx.ID(0).getText();
-            System.out.print(id);
         }
     }
 
     @Override
     public void exitDeclaration(MyGrammarParser.DeclarationContext ctx) {
-        System.out.println(";");
+        if(asigPara){
+            System.out.print(";");
+        }
+        if(!entraPara && !asigPara){
+            System.out.println(";");
+        }
     }
 
     @Override
     public void enterAsignacion_id(MyGrammarParser.Asignacion_idContext ctx) {
-        if(ctx.valor() != null){
-            if(ctx.ID().size() > 0){
-                for(int i = 0; i < ctx.ID().size(); i++){
-                    System.out.print("." + ctx.ID(i));
+        if(!entraPara){
+            if(ctx.valor() != null){
+                if(ctx.ID().size() > 0){
+                    for(int i = 0; i < ctx.ID().size(); i++){
+                        System.out.print("." + ctx.ID(i));
+                    }
                 }
+                System.out.print(" = " + ctx.valor().getText());
+            }else{
+                String id = ctx.ID(0).getText();
+                System.out.print(" " + id);
             }
-            System.out.print(" = " + ctx.valor().getText());
-        }else{
-            String id = ctx.ID(0).getText();
-            System.out.print(" " + id);
         }
     }
 
@@ -253,4 +266,192 @@ public class traductor extends MyGrammarBaseListener{
     public void exitValor(MyGrammarParser.ValorContext ctx) {
         super.exitValor(ctx);
     }
+
+    @Override
+    public void enterSi(MyGrammarParser.SiContext ctx) {
+        imprimirTab();
+        String valor = ctx.valor(0).getText();
+        System.out.print("if (" + valor);
+        for(int i = 1; i < ctx.valor().size(); i++){
+            String op = ctx.RIP(i-1).getText();
+            String v = ctx.valor(i).getText();
+            System.out.print(" " + op + " " + v);
+        }
+        System.out.println(") {");
+        cambiarTab(true);
+    }
+
+    @Override
+    public void exitSi(MyGrammarParser.SiContext ctx) {
+        cambiarTab(false);
+        imprimirTab();
+        if(ctx.si_no() == null){
+            System.out.println("}");
+        }
+    }
+
+    @Override
+    public void enterSi_no(MyGrammarParser.Si_noContext ctx) {
+        if(ctx.comands() != null){
+            cambiarTab(false);
+            imprimirTab();
+            System.out.println("} else {");
+            cambiarTab(true);
+        }
+    }
+
+    @Override
+    public void exitSi_no(MyGrammarParser.Si_noContext ctx) {
+        cambiarTab(false);
+        imprimirTab();
+        System.out.println("}");
+    }
+
+    @Override
+    public void enterFunc_id(MyGrammarParser.Func_idContext ctx) {
+        imprimirTab();
+        System.out.print(ctx.ID() + "(");
+    }
+
+    @Override
+    public void exitFunc_id(MyGrammarParser.Func_idContext ctx) {
+        System.out.println(");");
+    }
+
+    @Override
+    public void enterPar_fun(MyGrammarParser.Par_funContext ctx) {
+        if(ctx.valor() != null){
+            String valor = ctx.valor(0).getText();
+            System.out.print(valor);
+            for(int i = 1; i < ctx.valor().size(); i++){
+                System.out.print(", " + ctx.valor(i).getText());
+            }
+        }
+    }
+
+    @Override
+    public void exitPar_fun(MyGrammarParser.Par_funContext ctx) {
+    }
+
+    @Override
+    public void enterMientras(MyGrammarParser.MientrasContext ctx) {
+        imprimirTab();
+        String valor = ctx.valor(0).getText();
+        System.out.print("while (" + valor);
+        for(int i = 1; i < ctx.valor().size(); i++){
+            String op = ctx.RIP(i-1).getText();
+            String v = ctx.valor(i).getText();
+            System.out.print(" " + op + " " + v);
+        }
+        System.out.println(") {");
+        cambiarTab(true);
+    }
+
+    @Override
+    public void exitMientras(MyGrammarParser.MientrasContext ctx) {
+        cambiarTab(false);
+        imprimirTab();
+        System.out.print("}");
+    }
+
+    @Override
+    public void enterHacer_mientras(MyGrammarParser.Hacer_mientrasContext ctx){
+        imprimirTab();
+        System.out.println("do{");
+        cambiarTab(true);
+    }
+
+    @Override
+    public void exitHacer_mientras(MyGrammarParser.Hacer_mientrasContext ctx){
+        String valor = ctx.valor(0).getText();
+        cambiarTab(false);
+        imprimirTab();
+        System.out.print("}while ( " + valor);
+        for(int i = 1; i < ctx.valor().size(); i++){
+            String op = ctx.RIP(i-1).getText();
+            String v = ctx.valor(i).getText();
+            System.out.print(" " + op + " " + v);
+        }
+        System.out.print(" );");
+    }
+
+    @Override public void enterPara(MyGrammarParser.ParaContext ctx) {
+        imprimirTab();
+        String valor = ctx.valor(0).getText();
+        System.out.print("for(");
+        cambiarTab(false);
+        asigPara=true;
+        enterDeclaration(ctx.declaration());
+        if(ctx.declaration().asignacion_id() != null){
+            enterAsignacion_id(ctx.declaration().asignacion_id());
+        }
+        exitDeclaration(ctx.declaration());
+
+        System.out.print(" "+valor);
+        for(int i = 1; i < ctx.valor().size(); i++){
+            String op = ctx.RIP(i-1).getText();
+            String v = ctx.valor(i).getText();
+            System.out.print(" " + op + " " + v);
+        }
+        String aumento = "";
+        if(ctx.INT() != null){
+            aumento = ctx.INT().getText();
+        }else{
+            aumento = ctx.ID().getText();
+        }
+        System.out.println(";"+ " " + ctx.declaration().ID(0).getText() + " += " + aumento +"){");
+        entraPara = true;
+        asigPara=false;
+        cambiarTab(true);
+        cambiarTab(true);
+    }
+
+    @Override public void exitPara(MyGrammarParser.ParaContext ctx) {
+        cambiarTab(false);
+        imprimirTab();
+        System.out.println("}");
+        entraPara = false;
+    }
+
+    @Override public void enterSeleccionar(MyGrammarParser.SeleccionarContext ctx) {
+        imprimirTab();
+        System.out.println("switch (" + ctx.valor().getText() + ") {");
+        cambiarTab(true);
+    }
+
+    @Override public void exitSeleccionar(MyGrammarParser.SeleccionarContext ctx) {
+        cambiarTab(false);
+        imprimirTab();
+        System.out.println("}");
+    }
+
+    @Override public void enterCasos(MyGrammarParser.CasosContext ctx) {
+    }
+
+    @Override public void exitCasos(MyGrammarParser.CasosContext ctx) {
+    }
+
+    @Override public void enterCasos_(MyGrammarParser.Casos_Context ctx) {
+        imprimirTab();
+        System.out.println("case " + ctx.valor().getText() + ":");
+        cambiarTab(true);
+    }
+
+    @Override public void exitCasos_(MyGrammarParser.Casos_Context ctx) {
+        cambiarTab(false);
+    }
+
+    @Override public void enterDefecto(MyGrammarParser.DefectoContext ctx) {
+        imprimirTab();
+        System.out.println("default:");
+    }
+
+    @Override public void exitDefecto(MyGrammarParser.DefectoContext ctx) { }
+
+    @Override public void enterRomper(MyGrammarParser.RomperContext ctx) {
+        imprimirTab();
+        System.out.println("break;");
+    }
+
+    @Override public void exitRomper(MyGrammarParser.RomperContext ctx) { }
 }

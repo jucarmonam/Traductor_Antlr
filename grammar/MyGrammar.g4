@@ -77,11 +77,11 @@ par_fun         : valor (',' valor)*
                 |
                 ;
 
-mientras        : 'mientras' PIZQ valor PDER 'hacer' comands 'fin_mientras';
+mientras        : 'mientras' PIZQ valor (RIP valor)* PDER 'hacer' comands 'fin_mientras';
 
-hacer_mientras  : 'hacer' comands 'mientras' PIZQ valor PDER SMCOLON;
+hacer_mientras  : 'hacer' comands 'mientras' PIZQ valor (RIP valor)* PDER SMCOLON;
 
-para            : 'para' PIZQ declaration valor SMCOLON valor PDER 'hacer' comands 'fin_para';
+para            : 'para' PIZQ declaration valor (RIP valor)* SMCOLON (INT|ID) PDER 'hacer' comands 'fin_para';
 
 seleccionar     : 'seleccionar' PIZQ valor PDER 'entre' casos 'fin_seleccionar';
 
@@ -108,8 +108,6 @@ operador_binario    : '+'
                     | '>'
                     | '=='
                     | '!='
-                    | '&&'
-                    | '||'
                     | '%'
                     ;
 
@@ -138,8 +136,8 @@ SMCOLON : ';' ;
 COLON : ',' ;
 MULOP	: ( '*' | '/' );
 SUMOP	: '+' | '-';
-DOUBLE	: [0-9]+( | [.][0-9]+);
 INT     : [0-9]+;
+DOUBLE	: [0-9]+( | [.][0-9]+);
 STRING  : '"' .*? '"';
 CARACTER  : '\''[a-zA-Z]'\'';
 BOOLEANO : ('verdadero' | 'falso');
