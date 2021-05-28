@@ -191,7 +191,9 @@ public class traductor extends MyGrammarBaseListener{
     @Override
     public void enterDeclaration(MyGrammarParser.DeclarationContext ctx) {
         if(!entraPara){
-            imprimirTab();
+            if(!asigPara){
+                imprimirTab();
+            }
             if(ctx.primitive() != null){
                 for(int i = 0; i < ctx.ID().size(); i++){
                     if(i == 0){
@@ -283,9 +285,9 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void exitSi(MyGrammarParser.SiContext ctx) {
-        cambiarTab(false);
-        imprimirTab();
         if(ctx.si_no() == null){
+            cambiarTab(false);
+            imprimirTab();
             System.out.println("}");
         }
     }
@@ -376,10 +378,10 @@ public class traductor extends MyGrammarBaseListener{
     }
 
     @Override public void enterPara(MyGrammarParser.ParaContext ctx) {
+        entraPara = false;
         imprimirTab();
         String valor = ctx.valor(0).getText();
         System.out.print("for(");
-        cambiarTab(false);
         asigPara=true;
         enterDeclaration(ctx.declaration());
         if(ctx.declaration().asignacion_id() != null){
@@ -402,7 +404,6 @@ public class traductor extends MyGrammarBaseListener{
         System.out.println(";"+ " " + ctx.declaration().ID(0).getText() + " += " + aumento +"){");
         entraPara = true;
         asigPara=false;
-        cambiarTab(true);
         cambiarTab(true);
     }
 
