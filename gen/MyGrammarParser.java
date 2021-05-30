@@ -148,6 +148,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitInicio(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitInicio(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final InicioContext inicio() throws RecognitionException {
@@ -248,6 +253,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitEstructura(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitEstructura(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final EstructuraContext estructura() throws RecognitionException {
@@ -314,6 +324,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitDeclaractionEstruct(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitDeclaractionEstruct(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -387,6 +402,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitFuncion(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitFuncion(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FuncionContext funcion() throws RecognitionException {
@@ -445,6 +465,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitRetornar(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitRetornar(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final RetornarContext retornar() throws RecognitionException {
@@ -498,6 +523,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitParameters(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitParameters(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -577,6 +607,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitMain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitMain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MainContext main() throws RecognitionException {
@@ -622,6 +657,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitComands(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitComands(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -698,6 +738,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitComand(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitComand(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -810,6 +855,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitLeer(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitLeer(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LeerContext leer() throws RecognitionException {
@@ -857,6 +907,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitIdr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitIdr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -917,6 +972,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitImprimir(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitImprimir(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ImprimirContext imprimir() throws RecognitionException {
@@ -970,6 +1030,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitImprimir_(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitImprimir_(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1030,6 +1095,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitId(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitId(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1099,6 +1169,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitCall_funcion(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitCall_funcion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1197,6 +1272,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitDeclaration(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitDeclaration(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DeclarationContext declaration() throws RecognitionException {
@@ -1284,6 +1364,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitAsignacion(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitAsignacion(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AsignacionContext asignacion() throws RecognitionException {
@@ -1342,6 +1427,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitAsignacion_id(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitAsignacion_id(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1441,6 +1531,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitValor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitValor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1608,6 +1703,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitSi(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitSi(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SiContext si() throws RecognitionException {
@@ -1678,6 +1778,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitSi_no(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitSi_no(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Si_noContext si_no() throws RecognitionException {
@@ -1736,6 +1841,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitFunc_id(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitFunc_id(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Func_idContext func_id() throws RecognitionException {
@@ -1789,6 +1899,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitPar_fun(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitPar_fun(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1881,6 +1996,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitMientras(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitMientras(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MientrasContext mientras() throws RecognitionException {
@@ -1963,6 +2083,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitHacer_mientras(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitHacer_mientras(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2052,6 +2177,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitPara(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitPara(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParaContext para() throws RecognitionException {
@@ -2139,6 +2269,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitSeleccionar(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitSeleccionar(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SeleccionarContext seleccionar() throws RecognitionException {
@@ -2195,6 +2330,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitCasos(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitCasos(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2279,6 +2419,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitCasos_(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitCasos_(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Casos_Context casos_() throws RecognitionException {
@@ -2338,6 +2483,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitDefecto(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitDefecto(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DefectoContext defecto() throws RecognitionException {
@@ -2390,6 +2540,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitRomper(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitRomper(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final RomperContext romper() throws RecognitionException {
@@ -2431,6 +2586,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2487,6 +2647,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitOperador_binario(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitOperador_binario(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Operador_binarioContext operador_binario() throws RecognitionException {
@@ -2534,6 +2699,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitOperador_logico(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitOperador_logico(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Operador_logicoContext operador_logico() throws RecognitionException {
@@ -2579,6 +2749,11 @@ public class MyGrammarParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitOperador_neg(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitOperador_neg(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Operador_negContext operador_neg() throws RecognitionException {
@@ -2623,6 +2798,11 @@ public class MyGrammarParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof MyGrammarListener ) ((MyGrammarListener)listener).exitPrimitive(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGrammarVisitor ) return ((MyGrammarVisitor<? extends T>)visitor).visitPrimitive(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
