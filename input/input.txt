@@ -1,4 +1,7 @@
 funcion_principal
+    entero num = 3;
+    entero num = 2;
+    entero b = 3;
     si ( num1 > num2 ) entonces
        res = num1;
        si( res == b ) entonces

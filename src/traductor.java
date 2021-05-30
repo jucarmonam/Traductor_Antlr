@@ -479,7 +479,13 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override public void enterDefecto(MyGrammarParser.DefectoContext ctx) {
         imprimirTab();
-        System.out.println("default:");
+        if(ctx.comands().comands() != null){
+            System.out.println("default:");
+        }else{
+            System.out.println("default:");
+            imprimirTab();
+            System.out.println("\t break;");
+        }
     }
 
     @Override public void exitDefecto(MyGrammarParser.DefectoContext ctx) { }
