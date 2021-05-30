@@ -337,6 +337,16 @@ public interface MyGrammarListener extends ParseTreeListener {
 	 */
 	void exitOperador_binario(MyGrammarParser.Operador_binarioContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGrammarParser#operador_logico}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperador_logico(MyGrammarParser.Operador_logicoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGrammarParser#operador_logico}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperador_logico(MyGrammarParser.Operador_logicoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGrammarParser#operador_neg}.
 	 * @param ctx the parse tree
 	 */

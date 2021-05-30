@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.tree.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         try{
+            //Traductor de Psycoder a cpp
             // crear un analizador léxico que se alimenta a partir de la entrada (archivo  o consola)
             MyGrammarLexer lexer;
             if (args.length>0)

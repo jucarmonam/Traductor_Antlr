@@ -411,6 +411,18 @@ public class MyGrammarBaseListener implements MyGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOperador_logico(MyGrammarParser.Operador_logicoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperador_logico(MyGrammarParser.Operador_logicoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterOperador_neg(MyGrammarParser.Operador_negContext ctx) { }
 	/**
 	 * {@inheritDoc}

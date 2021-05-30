@@ -55,7 +55,7 @@ asignacion_id       : ('.' ID)* '=' valor
                     | ID;
 
 
-valor           : PIZQ valor PDER
+valor           : PIZQ valor (operador_logico valor)* PDER
                 | operador_neg valor
                 | valor operador_binario valor
                 | DOUBLE
@@ -66,7 +66,7 @@ valor           : PIZQ valor PDER
                 | BOOLEANO
                 ;
 
-si              : 'si' PIZQ valor (RIP valor)* PDER 'entonces' comands si_no 'fin_si';
+si              : 'si' PIZQ valor (operador_logico valor)* PDER 'entonces' comands si_no 'fin_si';
 
 si_no            : 'si_no' comands
                 |
@@ -77,11 +77,11 @@ par_fun         : valor (',' valor)*
                 |
                 ;
 
-mientras        : 'mientras' PIZQ valor (RIP valor)* PDER 'hacer' comands 'fin_mientras';
+mientras        : 'mientras' PIZQ valor (operador_logico valor)* PDER 'hacer' comands 'fin_mientras';
 
-hacer_mientras  : 'hacer' comands 'mientras' PIZQ valor (RIP valor)* PDER SMCOLON;
+hacer_mientras  : 'hacer' comands 'mientras' PIZQ valor (operador_logico valor)* PDER SMCOLON;
 
-para            : 'para' PIZQ declaration valor (RIP valor)* SMCOLON (INT|ID) PDER 'hacer' comands 'fin_para';
+para            : 'para' PIZQ declaration valor (operador_logico valor)* SMCOLON (INT|ID) PDER 'hacer' comands 'fin_para';
 
 seleccionar     : 'seleccionar' PIZQ valor PDER 'entre' casos 'fin_seleccionar';
 
@@ -102,13 +102,11 @@ operador_binario    : '+'
                     | '-'
                     | '*'
                     | '/'
-                    | '<'
-                    | '<='
-                    | '>='
-                    | '>'
-                    | '=='
-                    | '!='
                     | '%'
+                    ;
+
+operador_logico     : ROP
+                    | RIP
                     ;
 
 operador_neg        : '-'

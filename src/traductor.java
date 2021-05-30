@@ -148,10 +148,12 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void enterComand(MyGrammarParser.ComandContext ctx) {
+        entraPara = false;
     }
 
     @Override
     public void exitComand(MyGrammarParser.ComandContext ctx) {
+        entraPara = false;
     }
 
     @Override
@@ -247,7 +249,11 @@ public class traductor extends MyGrammarBaseListener{
                         System.out.print("." + ctx.ID(i));
                     }
                 }
-                System.out.print(" = " + ctx.valor().getText());
+                String valor = ctx.valor().getText();
+                if(booleanos.containsKey(valor)){
+                    valor = booleanos.get(valor);
+                }
+                System.out.print(" = " + valor);
             }else{
                 String id = ctx.ID(0).getText();
                 System.out.print(" " + id);
@@ -272,12 +278,19 @@ public class traductor extends MyGrammarBaseListener{
     @Override
     public void enterSi(MyGrammarParser.SiContext ctx) {
         imprimirTab();
-        String valor = ctx.valor(0).getText();
-        System.out.print("if (" + valor);
-        for(int i = 1; i < ctx.valor().size(); i++){
-            String op = ctx.RIP(i-1).getText();
-            String v = ctx.valor(i).getText();
-            System.out.print(" " + op + " " + v);
+        System.out.print("if (");
+        for(int i = 0; i < ctx.valor().size(); i++){
+            String op = "";
+            if(ctx.operador_logico(i) != null){
+                op = ctx.operador_logico(i).getText();
+            }
+
+            String v1 = ctx.valor(i).getText();
+            if(booleanos.containsKey(v1)){
+                v1 = booleanos.get(v1);
+            }
+
+            System.out.print(" " + v1 + " " + op);
         }
         System.out.println(") {");
         cambiarTab(true);
@@ -338,12 +351,19 @@ public class traductor extends MyGrammarBaseListener{
     @Override
     public void enterMientras(MyGrammarParser.MientrasContext ctx) {
         imprimirTab();
-        String valor = ctx.valor(0).getText();
-        System.out.print("while (" + valor);
-        for(int i = 1; i < ctx.valor().size(); i++){
-            String op = ctx.RIP(i-1).getText();
-            String v = ctx.valor(i).getText();
-            System.out.print(" " + op + " " + v);
+        System.out.print("while (");
+        for(int i = 0; i < ctx.valor().size(); i++){
+            String op = "";
+            if(ctx.operador_logico(i) != null){
+                op = ctx.operador_logico(i).getText();
+            }
+
+            String v1 = ctx.valor(i).getText();
+            if(booleanos.containsKey(v1)){
+                v1 = booleanos.get(v1);
+            }
+
+            System.out.print(" " + v1 + " " + op);
         }
         System.out.println(") {");
         cambiarTab(true);
@@ -353,7 +373,7 @@ public class traductor extends MyGrammarBaseListener{
     public void exitMientras(MyGrammarParser.MientrasContext ctx) {
         cambiarTab(false);
         imprimirTab();
-        System.out.print("}");
+        System.out.println("}");
     }
 
     @Override
@@ -365,22 +385,28 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override
     public void exitHacer_mientras(MyGrammarParser.Hacer_mientrasContext ctx){
-        String valor = ctx.valor(0).getText();
         cambiarTab(false);
         imprimirTab();
-        System.out.print("}while ( " + valor);
-        for(int i = 1; i < ctx.valor().size(); i++){
-            String op = ctx.RIP(i-1).getText();
-            String v = ctx.valor(i).getText();
-            System.out.print(" " + op + " " + v);
+        System.out.print("}while ( ");
+        for(int i = 0; i < ctx.valor().size(); i++){
+            String op = "";
+            if(ctx.operador_logico(i) != null){
+                op = ctx.operador_logico(i).getText();
+            }
+
+            String v1 = ctx.valor(i).getText();
+            if(booleanos.containsKey(v1)){
+                v1 = booleanos.get(v1);
+            }
+
+            System.out.print(" " + v1 + " " + op);
         }
-        System.out.print(" );");
+        System.out.println(" );");
     }
 
     @Override public void enterPara(MyGrammarParser.ParaContext ctx) {
         entraPara = false;
         imprimirTab();
-        String valor = ctx.valor(0).getText();
         System.out.print("for(");
         asigPara=true;
         enterDeclaration(ctx.declaration());
@@ -388,12 +414,17 @@ public class traductor extends MyGrammarBaseListener{
             enterAsignacion_id(ctx.declaration().asignacion_id());
         }
         exitDeclaration(ctx.declaration());
+        for(int i = 0; i < ctx.valor().size(); i++){
+            String op = "";
+            if(ctx.operador_logico(i) != null){
+                op = ctx.operador_logico(i).getText();
+            }
 
-        System.out.print(" "+valor);
-        for(int i = 1; i < ctx.valor().size(); i++){
-            String op = ctx.RIP(i-1).getText();
-            String v = ctx.valor(i).getText();
-            System.out.print(" " + op + " " + v);
+            String v1 = ctx.valor(i).getText();
+            if(booleanos.containsKey(v1)){
+                v1 = booleanos.get(v1);
+            }
+            System.out.print(" " + v1 + " " + op);
         }
         String aumento = "";
         if(ctx.INT() != null){
@@ -416,7 +447,11 @@ public class traductor extends MyGrammarBaseListener{
 
     @Override public void enterSeleccionar(MyGrammarParser.SeleccionarContext ctx) {
         imprimirTab();
-        System.out.println("switch (" + ctx.valor().getText() + ") {");
+        String valor = ctx.valor().getText();
+        if(booleanos.containsKey(valor)){
+            valor = booleanos.get(valor);
+        }
+        System.out.println("switch (" + valor + ") {");
         cambiarTab(true);
     }
 
