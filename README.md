@@ -6,7 +6,7 @@ Este proyecto pertenece a un trabajo de la materia de lenguajes de programacion 
 * ANTLR en Intellij IDEA (ANTLR 4.9.2 Java binaries jar)
 * Java 8
 
-##Como ejecutarlo:
+## Como ejecutarlo:
 
 1. Clonar y abrir el proyecto en INTELLIJ IDEA.
 2. Buscar el archivo Main.java y traductor.java dentro del proyecto en la carpeta src, donde Main.java es el archivo a ejecutar.
