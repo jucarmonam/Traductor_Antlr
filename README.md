@@ -15,7 +15,7 @@ Este proyecto pertenece a un trabajo de la materia de lenguajes de programacion 
 
 ## Modificar el input
 
-El archivo input.txt es el cual el programa buscara y traducita su contenido por lo tanto este es el que debe ser modificado con codigo en lenguaje PsyCoder
+El archivo input.txt es el cual el programa buscara y traducira su contenido por lo tanto este es el que debe ser modificado con codigo en lenguaje PsyCoder
 
 * Juan Pablo Carmona Muñoz
 * Jonathan Andres Jimenez Trujillo
